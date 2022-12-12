@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,7 @@
 		6AB243982946914E005F7A79 /* GangstureHandModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6AB243972946914E005F7A79 /* GangstureHandModel.mlmodel */; };
 		6AB2439A29478874005F7A79 /* HandLandmarkTrackingGpu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB2439929478874005F7A79 /* HandLandmarkTrackingGpu.swift */; };
 		6AB2439C294788E6005F7A79 /* PacketReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB2439B294788E6005F7A79 /* PacketReceiver.swift */; };
+		6AB2439F29478B42005F7A79 /* TelloSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6AB2439E29478B42005F7A79 /* TelloSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -54,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AB2439F29478B42005F7A79 /* TelloSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +133,9 @@
 			dependencies = (
 			);
 			name = Example;
+			packageProductDependencies = (
+				6AB2439E29478B42005F7A79 /* TelloSwift */,
+			);
 			productName = Example;
 			productReference = 37EEA4092435143600750CDB /* Example.app */;
 			productType = "com.apple.product-type.application";
@@ -160,6 +165,9 @@
 				Base,
 			);
 			mainGroup = 37EEA4002435143600750CDB;
+			packageReferences = (
+				6AB2439D29478B42005F7A79 /* XCRemoteSwiftPackageReference "TelloSwift" */,
+			);
 			productRefGroup = 37EEA40A2435143600750CDB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -460,6 +468,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6AB2439D29478B42005F7A79 /* XCRemoteSwiftPackageReference "TelloSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/liuxuan30/TelloSwift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6AB2439E29478B42005F7A79 /* TelloSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6AB2439D29478B42005F7A79 /* XCRemoteSwiftPackageReference "TelloSwift" */;
+			productName = TelloSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 37EEA4012435143600750CDB /* Project object */;
 }
