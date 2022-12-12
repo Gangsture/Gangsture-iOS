@@ -94,7 +94,6 @@ class PacketReceiver: NSObject, MediaPipeGraphDelegate {
 
 class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, MediaPipeGraphDelegate {
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var toggleView: UISwitch!
     let camera = Camera()
     
     let tracker = HandLandmarkTrackingGpu()
@@ -117,9 +116,8 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         tracker.send(buffer: pixelBuffer)
         
         DispatchQueue.main.async {
-            if !self.toggleView.isOn {
                 self.imageView.image = UIImage(ciImage: CIImage(cvPixelBuffer: pixelBuffer))
-            }
+            
         }
     }
     
@@ -172,7 +170,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                 zvalues.append(data[i+15])
                 zvalues.append(data[i+16])
                 let zLandmark = bytesToFloat(bytes: zvalues)
-
+//                let zLandmark = Float(0.0)
                 zLandmarks.append(zLandmark)
 
 
