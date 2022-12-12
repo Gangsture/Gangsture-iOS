@@ -105,42 +105,10 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         camera.start()
         
         try! tracker.run { (output) in
-//            print(output.handLandmarks.count)
-//            print(output.handLandmarks[0])
+
             let data = output.handLandmarks[0]
             
-            
-            //            let str = String(decoding: data, as: UTF8.self) //7���\277\275��؏�<2
-            
-            //            print(str)
             let str2 = self.dataToByteString(data: output.handLandmarks[0])
-            
-            //            if(output.worldLandmarks.count == 2){
-            //                let str2 = self.dataToByteString(data: output.worldLandmarks[0])
-            //                let str3 = self.dataToByteString(data: output.worldLandmarks[1])
-            //
-            //                DispatchQueue.global().async {
-            //                    print("[0]:\(str2)")
-            //                    print("[1]:\(str3)")
-            //                }
-            //
-            //            }
-        }
-        
-        do {
-            //                let landmarks = try NormalizedLandmark(from: output.worldLandmarks[0] as! Decoder)
-            //                  print(landmarks)
-            
-            //                let value = try JSONDecoder().decode(NormalizedLandmark.self, from: output.worldLandmarks[0])
-            //                    print(value)
-            
-            //                let number = try JSONDecoder().decode(NormalizedLandmark.self, from: output.worldLandmarks[0])
-            //                print(number)
-            //
-            //                } catch {
-            //                  print(error)
-            //                }
-            //
         }
     }
     
@@ -158,25 +126,17 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     // MARK: - [Data 를 Byte 바이트 값 문자열로 리턴 실시]
     func dataToByteString(data: Data) -> String {
         
-        // [초기 리턴 데이터 변수 선언 실시]
+
         var returnData = ""
         var xLandmarks = [Float]()
         var yLandmarks = [Float]()
         var zLandmarks = [Float]()
         
-        // [인풋 데이터 널 체크 수행 실시]
+
         if data != nil
             && data.count>0
             && data.isEmpty == false {
-            
-            // [바이트 배열 값 확인 실시]
-            returnData = "["
-//            print("data.count = \(data.count)")
-//            print("data = \(String(describing: data))")
-//            var num = floatValue(data: data[3])
-//            print(num)
-            
-            
+           
             var xData = Data()
             var yData = Data()
             var zData = Data()
@@ -184,44 +144,17 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             
             
             for i in stride(from: 0, through: data.count-1, by: 17) {
-                //                var xlandmark = Data()
-                //                var ylandmark = Data()
-                //                var zlandmark = Data()
+
                 var xlandmark = ""
                 var ylandmark = ""
                 var zlandmark = ""
                 
-                /*
-                                let xvalue =
-                                  (Float(data[i+3]) << (0*8)) | // shifted by zero bits (not shifted)
-                                  (Float(data[i+4]) << (1*8)) | // shifted by 8 bits
-                                  (Float(data[i+5]) << (2*8)) | // shifted by 16 bits
-                                  (Float(data[i+6]) << (3*8))
-                
-                                let yvalue =
-                                  (Float(data[i+8]) << (0*8)) | // shifted by zero bits (not shifted)
-                                  (Float(data[i+9]) << (1*8)) | // shifted by 8 bits
-                                  (Float(data[i+10]) << (2*8)) | // shifted by 16 bits
-                                  (Float(data[i+11]) << (3*8))
-                
-                                let zvalue =
-                                  (Float(data[i+13]) << (0*8)) | // shifted by zero bits (not shifted)
-                                  (Float(data[i+14]) << (1*8)) | // shifted by 8 bits
-                                  (Float(data[i+15]) << (2*8)) | // shifted by 16 bits
-                                  (Float(data[i+16]) << (3*8))
-                */
-//                print(String(describing: data[i+3]))
-//                print(String(describing: data[i+4]))
-//                print(String(describing: data[i+5]))
-//                print(String(describing: data[i+6]))
-//
                 var xvalues = [UInt8]()
                 xvalues.append(data[i+3])
                 xvalues.append(data[i+4])
                 xvalues.append(data[i+5])
                 xvalues.append(data[i+6])
                 let xLandmark = bytesToFloat(bytes: xvalues)
-//                print(xlandmark)
                 
                 xLandmarks.append(xLandmark)
                 var yvalues = [UInt8]()
@@ -230,8 +163,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                 yvalues.append(data[i+10])
                 yvalues.append(data[i+11])
                 let yLandmark = bytesToFloat(bytes: yvalues)
-//                print(ylandmark)
-               
+
                 yLandmarks.append(yLandmark)
                 
                 var zvalues = [UInt8]()
@@ -240,68 +172,10 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                 zvalues.append(data[i+15])
                 zvalues.append(data[i+16])
                 let zLandmark = bytesToFloat(bytes: zvalues)
-//                print(zlandmark)
-                
+
                 zLandmarks.append(zLandmark)
-                
-//                print("\(i/17+1)번째 x:\(xLandmark),y:\(yLandmark),z:\(zLandmark)")
-                
-                
-                //                xlandmark += String(describing:data[i+3])
-                //                xlandmark += String(describing:data[i+4])
-                //                xlandmark += String(describing:data[i+5])
-                //                xlandmark += String(describing:data[i+6])
-                //
-                //                ylandmark += String(describing:data[i+8])
-                //                ylandmark += String(describing:data[i+9])
-                //                ylandmark += String(describing:data[i+10])
-                //                ylandmark += String(describing:data[i+11])
-                //
-                //                zlandmark += String(describing:data[i+13])
-                //                zlandmark += String(describing:data[i+14])
-                //                zlandmark += String(describing:data[i+15])
-                //                zlandmark += String(describing:data[i+16])
-                
-                
-                //                xlandmark += data[i+3]
-                //                xlandmark += data[i+4]
-                //                xlandmark += data[i+5]
-                //                xlandmark += data[i+6]
-                //
-                //                ylandmark += data[i+8]
-                //                ylandmark += data[i+9]
-                //                ylandmark += data[i+10]
-                //                ylandmark += data[i+11]
-                //
-                //                zlandmark += data[i+13]
-                //                zlandmark += data[i+14]
-                //                zlandmark += data[i+15]
-                //                zlandmark += data[i+16]
-                
-                
-                
-//                               print("\(i/17+1)번째 x:\(xvalue),y:\(yvalue),z:\(zvalue)")
-                
-                
-                //                    let str = String(decoding: data, as: UTF8.self)
-                
-                
-                //                print("\(i)번째 :\(String(describing: data[i]))")
-                //                    returnData += String(describing: data[i]) // [개별 바이트 값을 삽입]
-                
-                //                    if i != data.count-1 { // [배열 형태로 찍기 위함]
-                //                        returnData += ", "
-                //                    }
-                
-                //            for i in stride(from: 0, through: data.count-1, by: 1) {
-                //                print("\(i)번째 \(data[i])")
-                //            }
-                //
-                //
-                //                returnData += "\(i/17)번째 x: \(xlandmark),y: \(ylandmark),z:\(zlandmark)"
-                
-                
-                
+
+
             }
             
                 
@@ -316,9 +190,6 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             var resultY = Double(yLandmarks[i]-yLandmarks[0])
             var resultZ = Double(zLandmarks[i]-zLandmarks[0])
 
-//            coordinateString.append(contentsOf: "\(i)번 x:\(targetLandmark.x),y:\(targetLandmark.y),z:\(resultZ)")
-//            coordinateString.append(contentsOf: "\(i)번z:\(targetLandmark.z)\n")
-           
             inputList.append(Double(xLandmarks[i]))
             inputList.append(Double(xLandmarks[i]))
             inputList.append(Double(xLandmarks[i]))
@@ -534,68 +405,18 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         default :
             print("default")
         }
-        
-            // [리턴 데이터 반환 실시]
+
             return returnData
         }
     
     func bytesToFloat(bytes b: [UInt8]) -> Float {
-        let bigEndianValue = b.withUnsafeBufferPointer {
+        let littleEndianValue = b.withUnsafeBufferPointer {
             $0.baseAddress!.withMemoryRebound(to: UInt32.self, capacity: 1) { $0.pointee }
         }
-//        let bitPattern = UInt32(bigEndian: bigEndianValue)
-        let bitPattern = UInt32(littleEndian: bigEndianValue)
-        
+        let bitPattern = UInt32(littleEndian: littleEndianValue)
         return Float(bitPattern: bitPattern)
     }
 
-        
-        func floatValue(data: Data)->Float {
-            return Float(bitPattern: UInt32(bigEndian: data.withUnsafeBytes{
-                $0.load(as: UInt32.self)
-            }))
-        }
-        
-        // MARK: - [Data 를 Byte 바이트 값 문자열로 리턴 실시]
-        func dataToByteString(data: [Data]) -> String {
-            
-            
-            // [초기 리턴 데이터 변수 선언 실시]
-            var returnData = ""
-            
-            // [인풋 데이터 널 체크 수행 실시]
-            if data.count>0
-                && data.isEmpty == false {
-                
-                // [바이트 배열 값 확인 실시]
-                returnData = "["
-                //                print("data.count = \(data.count)")
-                //                print("data = \(String(describing: data))")
-                for j in 0..<2{
-//                    print("\(j)번 index")
-                    for i in stride(from: 0, through: data[j].count-1, by: 1) {
-                        //                    if (i%17==13){
-                        //                        print("\(i)번째 :\(String(describing: data[i]))")
-                        //                    }
-                        
-//                        DispatchQueue.global(qos: .utility).async {
-//                            print("\(i)번째 :\(String(describing: data[i]))")
-//                        }
-                        //                    print("\(i)번째 :\(String(describing: data[i]))")
-                        
-                        //                    returnData += String(describing: data[i]) // [개별 바이트 값을 삽입]
-                        
-                        //                    if i != data.count-1 { // [배열 형태로 찍기 위함]
-                        //                        returnData += ", "
-                        //                    }
-                    }
-                    //                returnData += "]"
-                }
-            }
-            //
-            return returnData
-        }
-        
-        
-    
+
+     
 }
