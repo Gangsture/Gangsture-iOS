@@ -41,6 +41,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="droneVideoView" destination="Mnm-dh-DfN" id="8ve-SC-7Lm"/>
                         <outlet property="imageView" destination="CeR-wf-CUZ" id="ql2-Yk-x6K"/>
                     </connections>
                 </viewController>

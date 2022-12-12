@@ -12,9 +12,17 @@ import MediaPipeHands
 
 class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, MediaPipeGraphDelegate {
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var droneVideoView: UIImageView!
     let camera = Camera()
-    
     let tracker = HandLandmarkTrackingGpu()
+    
+    var takeoffCount = 0
+    var landCount = 0
+    var forwardCount = 0
+    var backwardCount = 0
+    var previousDirection = 10
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
