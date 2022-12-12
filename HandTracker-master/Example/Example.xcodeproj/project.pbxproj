@@ -15,7 +15,6 @@
 		37EEA4192435143700750CDB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37EEA4172435143700750CDB /* LaunchScreen.storyboard */; };
 		37F8488E243515D80078042B /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F8488D243515D80078042B /* Camera.swift */; };
 		6AB243982946914E005F7A79 /* GangstureHandModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6AB243972946914E005F7A79 /* GangstureHandModel.mlmodel */; };
-		6AB84A4329428FEF00001E9C /* NormalizedLandmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB84A4229428FEF00001E9C /* NormalizedLandmark.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,7 +41,6 @@
 		37EEA41A2435143700750CDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		37F8488D243515D80078042B /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		6AB243972946914E005F7A79 /* GangstureHandModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = GangstureHandModel.mlmodel; sourceTree = "<group>"; };
-		6AB84A4229428FEF00001E9C /* NormalizedLandmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalizedLandmark.swift; sourceTree = "<group>"; };
 		A044C3E52F7E9F119AA10B33 /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		CD79B9A1357C0D0A1DD28571 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,7 +86,6 @@
 				37EEA41A2435143700750CDB /* Info.plist */,
 				6AB243972946914E005F7A79 /* GangstureHandModel.mlmodel */,
 				37F8488D243515D80078042B /* Camera.swift */,
-				6AB84A4229428FEF00001E9C /* NormalizedLandmark.swift */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -231,7 +228,6 @@
 				37EEA40D2435143600750CDB /* AppDelegate.swift in Sources */,
 				37EEA40F2435143600750CDB /* SceneDelegate.swift in Sources */,
 				6AB243982946914E005F7A79 /* GangstureHandModel.mlmodel in Sources */,
-				6AB84A4329428FEF00001E9C /* NormalizedLandmark.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
