@@ -1,0 +1,6 @@
+framework module MediaPipeHands {
+  umbrella header "MediaPipeGraph.h"
+
+  export *
+  module * { export * }
+}

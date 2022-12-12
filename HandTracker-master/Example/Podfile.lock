@@ -1,0 +1,16 @@
+PODS:
+  - MediaPipeHands (1.4)
+
+DEPENDENCIES:
+  - MediaPipeHands (from `https://github.com/szotp-lc/HandTracker/releases/download/1.4/MediaPipeHands.podspec`)
+
+EXTERNAL SOURCES:
+  MediaPipeHands:
+    :podspec: https://github.com/szotp-lc/HandTracker/releases/download/1.4/MediaPipeHands.podspec
+
+SPEC CHECKSUMS:
+  MediaPipeHands: 1be983fe7f7f1023afe8758bed65eea1308ffc6a
+
+PODFILE CHECKSUM: e38b73fbba00b7222c233819bf0bfcf071512caf
+
+COCOAPODS: 1.11.3
