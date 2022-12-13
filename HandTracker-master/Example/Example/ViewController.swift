@@ -9,10 +9,13 @@
 import UIKit
 import AVFoundation
 import MediaPipeHands
+import TelloSwift
 
-class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, MediaPipeGraphDelegate {
+class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, MediaPipeGraphDelegate, TelloVideoSteam {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var droneVideoView: UIImageView!
+    @IBOutlet weak var directionLabel: UILabel!
+    @IBOutlet weak var droneControlSwitch: UISwitch!
     let camera = Camera()
     let tracker = HandLandmarkTrackingGpu()
     
@@ -20,9 +23,21 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     var landCount = 0
     var forwardCount = 0
     var backwardCount = 0
+    var leftCount = 0
+    var rightCount = 0
+    var upCount = 0
+    var downCount = 0
     var previousDirection = 10
+    var isDroneConnected = false
+    var isSendControl = true
+//    var isSendControl = false
     
-    
+    //DroneVideoView related Variables
+    var videoLayer : AVSampleBufferDisplayLayer?
+    var streamBuffer = Array<UInt8>()
+    let decoder = TelloVideoH264Decoder()
+    var tello : Tello!
+    let startCode : [UInt8] = [0,0,0,1]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +50,83 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             
             let str2 = self.dataToByteString(data: output.handLandmarks[0])
         }
+        
+        tello = Tello()
+        tello.videoDelegate = self
+        print("고")
+        
+        if(isSendControl){
+                if self.tello.activate() {
+                    self.isDroneConnected = true
+                    print("connected:", self.tello.activate())
+                    print("battery:", self.tello.battery)
+                            tello.enable(video: true)
+                            tello.keepAlive(every: 10)
+                }else{
+                    self.isDroneConnected = false
+                    print("연결 안됨")
+                }
+          
+        }
+
+
+//
+
+
+        videoLayer = AVSampleBufferDisplayLayer()
+        
+      
+        if let layer = self.videoLayer {
+            layer.frame = CGRect(x: 0, y: 0, width: self.droneVideoView.frame.width, height: self.droneVideoView.frame.height)
+            layer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+            
+            let _CMTimebasePointer = UnsafeMutablePointer<CMTimebase?>.allocate(capacity: 1)
+            let status = CMTimebaseCreateWithMasterClock( allocator: kCFAllocatorDefault, masterClock: CMClockGetHostTimeClock(),  timebaseOut: _CMTimebasePointer )
+            layer.controlTimebase = _CMTimebasePointer.pointee
+            
+            if let controlTimeBase = layer.controlTimebase, status == noErr {
+                CMTimebaseSetTime(controlTimeBase, time: CMTime.zero);
+                CMTimebaseSetRate(controlTimeBase, rate: 1.0);
+            }
+            self.droneVideoView.layer.addSublayer(layer)
+            layer.display()
+
+        }
+        
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("뷰디드어페어")
+        DispatchQueue.global().asyncAfter(deadline: DispatchTime.now().advanced(by: .seconds(2))) { [unowned self] in
+            // use either startHandle() or decoder.renderVideoStream(),
+            // they just behave in different ways, but eventually the same, giving more flexibility
+            
+            //self.startHandle()
+            self.decoder.renderVideoStream(streamBuffer: &self.streamBuffer, to: self.videoLayer!)
+            
+        }
+        
+         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tello.clearTimer()
+        tello.shutdown()
+    }
+    
+    @IBAction func stopButtonDidTap(_ sender: Any) {
+        if droneControlSwitch.isOn && isSendControl{
+            self.tello.stop()
+        }
+    }
+    
+    @IBAction func landButtonDidTap(_ sender: Any) {
+        if droneControlSwitch.isOn && isSendControl{
+            self.tello.land()
+        }
+    }
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)!
         tracker.send(buffer: pixelBuffer)
@@ -122,6 +212,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             inputList.append(resultZ)
         }
         
+//        let model = GangstureModel()
         let model = GangstureHandModel()
         guard let gangstureHandModelOutput = try? model.prediction(
             hand_type: 0,
@@ -260,74 +351,92 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         switch (signal){
         case 0:
             signalLabel = "UP"
+            upCount = upCount + 1
             print("Up")
-            //            self.tello.up(by: 10)
+            if signal == previousDirection && upCount > 10 && droneControlSwitch.isOn{
+                self.tello.up(by: 30)
+                upCount = 0
+            }
+            
+           
             
         case 1:
             signalLabel = "Down"
+            downCount = downCount + 1
             print("Down")
-            //            self.tello.down(by: 10)
+            if signal == previousDirection && downCount > 10 && droneControlSwitch.isOn && isSendControl{
+                self.tello.down(by: 30)
+                downCount = 0
+            }
+            
         case 2:
             signalLabel = "Left"
+            leftCount = leftCount + 1
             print("Left")
-            //            self.tello.left(by: 10)
+            if signal == previousDirection && leftCount > 10 && droneControlSwitch.isOn && isSendControl{
+                self.tello.left(by: 30)
+                leftCount = 0
+            }
+            
         case 3:
             signalLabel = "Right"
+            rightCount = rightCount + 1
             print("Right")
-            //            self.tello.right(by: 10)
+            if signal == previousDirection && rightCount > 10 && droneControlSwitch.isOn && isSendControl{
+                self.tello.right(by: 30)
+                rightCount = 0
+            }
+            
         case 4:
             signalLabel = "Go forward"
-//            forwardCount = forwardCount + 1
+            forwardCount = forwardCount + 1
             print("Go forward")
-//            if signal == previousDirection && forwardCount > 30 && tello.activate(){
-//                self.tello.forward(by: 30)
-//                forwardCount = 0
-//            }
+          if signal == previousDirection && forwardCount > 10 && droneControlSwitch.isOn && isSendControl{
+            self.tello.forward(by: 30)
+            forwardCount = 0
+        }
             
-//            if tello.activate(){
-//                self.tello.forward(by: 10)
-//            }
                        
         case 5:
             signalLabel = "Back"
             print("Back")
             
-//            backwardCount = backwardCount + 1
-//            if signal == previousDirection && backwardCount > 30 && tello.activate(){
-//                self.tello.back(by: 30)
-//                backwardCount = 0
-//            }
-//            if tello.activate(){
-//                self.tello.back(by: 10)
-//            }
-         
+            backwardCount = backwardCount + 1
+            if signal == previousDirection && backwardCount > 10 && droneControlSwitch.isOn && isSendControl{
+                self.tello.back(by: 30)
+                backwardCount = 0
+            }
+
         case 6:
             signalLabel = "Take off"
             print("Take off")
-//            takeoffCount = takeoffCount + 1
+            takeoffCount = takeoffCount + 1
+
             
-//            if signal == previousDirection && takeoffCount > 30 && tello.activate(){
-//                self.tello.takeoff()
-//                takeoffCount = 0
-//            }
-//            if tello.activate(){
-//                            self.tello.takeoff()
-//            }
+            if signal == previousDirection && takeoffCount > 10 && droneControlSwitch.isOn && isSendControl{
+                print("true")
+                self.tello.takeoff()
+                takeoffCount = 0
+            }
+
             
         case 7:
             signalLabel = "Land"
             print("Land")
-//            landCount = landCount + 1
-//            if signal == previousDirection && landCount > 30 && tello.activate(){
-//                self.tello.land()
-//                landCount = 0
-//            }
-//            if(tello.activate()){
-//                self.tello.land()
-//            }
-                        
+            landCount = landCount + 1
+            if signal == previousDirection && landCount > 10 && droneControlSwitch.isOn && isSendControl{
+                self.tello.land()
+                landCount = 0
+            }
+       
         default :
             print("default")
+        }
+        
+        previousDirection = Int(signal)
+        
+        DispatchQueue.main.async {
+            self.directionLabel.text = signalLabel
         }
 
             return returnData
@@ -340,7 +449,99 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         let bitPattern = UInt32(littleEndian: littleEndianValue)
         return Float(bitPattern: bitPattern)
     }
+    
+    func telloStream(receive frame: Data?) {
+        
+        if let frame = frame {
+            let packet = [UInt8](frame)
+            streamBuffer.append(contentsOf: packet)
+        }
+    }
+    
+    public typealias NALU = Array<UInt8>
+    func getNALUnit() -> NALU? {
+        
+        if streamBuffer.count == 0 {
+            return nil
+        }
+        
+        //make sure start with start code
+        if streamBuffer.count < 5 || Array(streamBuffer[0...3]) != startCode {
+            return nil
+        }
+        
+        //find second start code, so startIndex = 4
+        var startIndex = 4
+        
+        while true {
+            
+            while ((startIndex + 3) < streamBuffer.count) {
+                if Array(streamBuffer[startIndex...startIndex+3]) == startCode {
+                    
+                    let packet = Array(streamBuffer[0..<startIndex])
+                    streamBuffer.removeSubrange(0..<startIndex)
+                    
+                    return packet
+                }
+                startIndex += 1
+            }
+            
+            // not found next start code , read more data
+            if streamBuffer.count == 0 {
+                return nil
+            }
+        }
+    }
+    
+    func startHandling() {
+        while let packet = getNALUnit() {
+            if let sampleBuffer = decoder.getCMSampleBuffer(from: packet) {
+                let attachments:CFArray? = CMSampleBufferGetSampleAttachmentsArray(sampleBuffer, createIfNecessary: true)
+                if let attachmentArray = attachments {
+                    let dic = unsafeBitCast(CFArrayGetValueAtIndex(attachmentArray, 0), to: CFMutableDictionary.self)
+                    
+                    CFDictionarySetValue(dic,
+                                         Unmanaged.passUnretained(kCMSampleAttachmentKey_DisplayImmediately).toOpaque(),
+                                         Unmanaged.passUnretained(kCFBooleanTrue).toOpaque())
+                }
+                
+                videoLayer?.enqueue(sampleBuffer)
+                
+                DispatchQueue.main.async(execute: {
+                    self.videoLayer?.needsDisplay()
+                    
+                })
+            }
+        }
+    }
+    
+}
 
+extension Collection {
+    /// Returns the element at the specified index if it is within bounds, otherwise nil.
+    subscript (safe index: Index) -> Element? {
+        return indices.contains(index) ? self[index] : nil
+    }
+}
 
-     
+extension CGFloat {
+    func ceiling(toDecimal decimal: Int) -> CGFloat {
+        let numberOfDigits = CGFloat(abs(pow(10.0, Double(decimal))))
+        if self.sign == .minus {
+            return CGFloat(Int(self * numberOfDigits)) / numberOfDigits
+        } else {
+            return CGFloat(ceil(self * numberOfDigits)) / numberOfDigits
+        }
+    }
+}
+
+extension Double {
+    func ceiling(toDecimal decimal: Int) -> Double {
+        let numberOfDigits = abs(pow(10.0, Double(decimal)))
+        if self.sign == .minus {
+            return Double(Int(self * numberOfDigits)) / numberOfDigits
+        } else {
+            return Double(ceil(self * numberOfDigits)) / numberOfDigits
+        }
+    }
 }
