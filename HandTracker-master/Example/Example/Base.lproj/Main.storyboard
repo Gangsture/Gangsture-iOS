@@ -63,22 +63,37 @@
                                     <constraint firstAttribute="height" constant="50" id="ySA-aM-oHT"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="STOP">
-                                    <fontDescription key="titleFontDescription" type="system" weight="heavy" pointSize="25"/>
+                                <buttonConfiguration key="configuration" style="filled">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="STOP">
+                                            <attributes>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <font key="NSFont" size="25" name="Arial-BoldMT"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
                                     <color key="baseBackgroundColor" red="0.97254901959999995" green="0.40699507829999998" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="stopButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XNQ-Cv-S4J"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S9Y-hA-F7O">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S9Y-hA-F7O">
                                 <rect key="frame" x="41" y="772" width="174" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="wfZ-MQ-HmV"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="LAND">
-                                    <fontDescription key="titleFontDescription" type="system" weight="heavy" pointSize="25"/>
+                                <buttonConfiguration key="configuration" style="filled">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="LAND">
+                                            <attributes>
+                                                <font key="NSFont" size="25" name="Arial-BoldMT"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
                                     <color key="baseBackgroundColor" red="0.97254901959999995" green="0.40699507829999998" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -86,13 +101,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACTIVATE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjq-EY-9Bi">
-                                <rect key="frame" x="57" y="648.5" width="82.5" height="21.5"/>
+                                <rect key="frame" x="62" y="648.5" width="82.5" height="21.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                 <color key="textColor" red="0.4697728753" green="0.95127540830000001" blue="0.78821742530000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hzM-Cl-ySP">
-                                <rect key="frame" x="149.5" y="644" width="51" height="31"/>
+                                <rect key="frame" x="154.5" y="644" width="51" height="31"/>
                                 <color key="onTintColor" red="0.18823529410000001" green="0.96333198809999998" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </switch>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jCS-iV-0pZ">
@@ -119,7 +134,7 @@
                             <constraint firstItem="CeR-wf-CUZ" firstAttribute="leading" secondItem="S9Y-hA-F7O" secondAttribute="trailing" constant="39" id="MXR-M2-jgj"/>
                             <constraint firstItem="S9Y-hA-F7O" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="41" id="Mhr-1a-tmN"/>
                             <constraint firstItem="6zq-Bl-rA9" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="QPi-Lo-r4I"/>
-                            <constraint firstItem="jjq-EY-9Bi" firstAttribute="centerX" secondItem="jGk-y0-X0v" secondAttribute="centerX" constant="-30" id="W0N-fO-KyN"/>
+                            <constraint firstItem="jjq-EY-9Bi" firstAttribute="centerX" secondItem="jGk-y0-X0v" secondAttribute="centerX" constant="-25" id="W0N-fO-KyN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="CeR-wf-CUZ" secondAttribute="bottom" constant="40" id="XVL-Ek-pw0"/>
                             <constraint firstItem="hzM-Cl-ySP" firstAttribute="centerY" secondItem="jjq-EY-9Bi" secondAttribute="centerY" id="bTm-oY-JUt"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6zq-Bl-rA9" secondAttribute="trailing" constant="11" id="bap-9i-ubH"/>
