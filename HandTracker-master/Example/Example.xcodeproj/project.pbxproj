@@ -50,6 +50,7 @@
 		6AB2439B294788E6005F7A79 /* PacketReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketReceiver.swift; sourceTree = "<group>"; };
 		6AB243A029478BAB005F7A79 /* TelloVideoH264Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelloVideoH264Decoder.swift; sourceTree = "<group>"; };
 		6AB243A22947B0CD005F7A79 /* GangstureModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = GangstureModel.mlmodel; sourceTree = "<group>"; };
+		6AB243A429485D64005F7A79 /* ExampleDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ExampleDebug.entitlements; sourceTree = "<group>"; };
 		A044C3E52F7E9F119AA10B33 /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		CD79B9A1357C0D0A1DD28571 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,6 +88,7 @@
 		37EEA40B2435143600750CDB /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				6AB243A429485D64005F7A79 /* ExampleDebug.entitlements */,
 				37EEA40C2435143600750CDB /* AppDelegate.swift */,
 				37EEA40E2435143600750CDB /* SceneDelegate.swift */,
 				37EEA4102435143600750CDB /* ViewController.swift */,
@@ -397,6 +399,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Example/ExampleDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3H85AXMVD3;
@@ -410,7 +413,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = dev.noppe.handTracker.Example;
+				PRODUCT_BUNDLE_IDENTIFIER = yujin.handTracker.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

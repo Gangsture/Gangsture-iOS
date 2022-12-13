@@ -95,14 +95,16 @@
                                 <rect key="frame" x="149.5" y="644" width="51" height="31"/>
                                 <color key="onTintColor" red="0.18823529410000001" green="0.96333198809999998" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </switch>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jCS-iV-0pZ">
-                                <rect key="frame" x="331" y="64" width="63" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jCS-iV-0pZ">
+                                <rect key="frame" x="341" y="72" width="53" height="34"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" image="wifi" catalog="system">
+                                <buttonConfiguration key="configuration" style="filled" image="wifi" catalog="system" title="">
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="baseBackgroundColor" red="0.97254901959999995" green="0.40699507829999998" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="wifiButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vEx-Zi-Lgo"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -123,9 +125,11 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6zq-Bl-rA9" secondAttribute="trailing" constant="11" id="bap-9i-ubH"/>
                             <constraint firstItem="jGk-y0-X0v" firstAttribute="top" secondItem="jjq-EY-9Bi" secondAttribute="bottom" constant="26" id="chI-Fx-Heb"/>
                             <constraint firstItem="S9Y-hA-F7O" firstAttribute="bottom" secondItem="CeR-wf-CUZ" secondAttribute="bottom" id="gCE-Qt-EhY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jCS-iV-0pZ" secondAttribute="trailing" constant="20" id="jST-aH-1Oo"/>
                             <constraint firstItem="6zq-Bl-rA9" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-140" id="lWH-Cm-4P5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="CeR-wf-CUZ" secondAttribute="trailing" constant="40" id="qdW-C1-Kqc"/>
                             <constraint firstItem="Aof-Zd-06s" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="vnM-zM-OES"/>
+                            <constraint firstItem="6zq-Bl-rA9" firstAttribute="top" secondItem="jCS-iV-0pZ" secondAttribute="bottom" constant="13" id="xJH-Xm-U9c"/>
                         </constraints>
                     </view>
                     <connections>

@@ -6,10 +6,12 @@
 //  Copyright © 2020 Tomoya Hirano. All rights reserved.
 //
 
-import UIKit
 import AVFoundation
 import MediaPipeHands
+import NetworkExtension
 import TelloSwift
+import UIKit
+
 
 class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, MediaPipeGraphDelegate, TelloVideoSteam {
     @IBOutlet weak var imageView: UIImageView!
@@ -29,8 +31,9 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     var downCount = 0
     var previousDirection = 10
     var isDroneConnected = false
-//    var isSendControl = true
-    var isSendControl = false
+    var isSendControl = true
+//    var isSendControl = false
+    
     
     //DroneVideoView related Variables
     var videoLayer : AVSampleBufferDisplayLayer?
@@ -127,6 +130,30 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             self.tello.land()
         }
     }
+    
+    @IBAction func wifiButtonDidTap(_ sender: Any) {
+        //If this button is clicked, Wifi will be connected to the drone
+        let configuration = NEHotspotConfiguration.init(ssid: "TELLO-98F9B8", passphrase: "DonotHavePassword", isWEP: false)
+        configuration.joinOnce = true
+
+        //Connect to the drone's Wifi
+        NEHotspotConfigurationManager.shared.apply(configuration) { (error) in
+            if error != nil { //There are error
+                if error?.localizedDescription == "already associated." //The error is what the Wifi is already connected to the drone
+                {
+                    print("Connected")
+                }
+                else{
+                    print("No Connected") //There are error and not connected to the drone yet.
+                }
+            }
+            else {
+                print("Connected")
+            }
+        }
+        print("Complete to connect to the drone button")
+    }
+    
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)!
         tracker.send(buffer: pixelBuffer)
@@ -346,99 +373,9 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         }
         
         let signal = gangstureHandModelOutput.target
-        var signalLabel = ""
+ 
+        sendSignalToDrone(signal: Int(signal))
         
-        switch (signal){
-        case 0:
-            signalLabel = "UP"
-            upCount = upCount + 1
-            print("Up")
-            if signal == previousDirection && upCount > 10 && droneControlSwitch.isOn{
-                self.tello.up(by: 30)
-                upCount = 0
-            }
-            
-           
-            
-        case 1:
-            signalLabel = "Down"
-            downCount = downCount + 1
-            print("Down")
-            if signal == previousDirection && downCount > 10 && droneControlSwitch.isOn && isSendControl{
-                self.tello.down(by: 30)
-                downCount = 0
-            }
-            
-        case 2:
-            signalLabel = "Left"
-            leftCount = leftCount + 1
-            print("Left")
-            if signal == previousDirection && leftCount > 10 && droneControlSwitch.isOn && isSendControl{
-                self.tello.left(by: 30)
-                leftCount = 0
-            }
-            
-        case 3:
-            signalLabel = "Right"
-            rightCount = rightCount + 1
-            print("Right")
-            if signal == previousDirection && rightCount > 10 && droneControlSwitch.isOn && isSendControl{
-                self.tello.right(by: 30)
-                rightCount = 0
-            }
-            
-        case 4:
-            signalLabel = "Go forward"
-            forwardCount = forwardCount + 1
-            print("Go forward")
-          if signal == previousDirection && forwardCount > 10 && droneControlSwitch.isOn && isSendControl{
-            self.tello.forward(by: 30)
-            forwardCount = 0
-        }
-            
-                       
-        case 5:
-            signalLabel = "Back"
-            print("Back")
-            
-            backwardCount = backwardCount + 1
-            if signal == previousDirection && backwardCount > 10 && droneControlSwitch.isOn && isSendControl{
-                self.tello.back(by: 30)
-                backwardCount = 0
-            }
-
-        case 6:
-            signalLabel = "Take off"
-            print("Take off")
-            takeoffCount = takeoffCount + 1
-
-            
-            if signal == previousDirection && takeoffCount > 10 && droneControlSwitch.isOn && isSendControl{
-                print("true")
-                self.tello.takeoff()
-                takeoffCount = 0
-            }
-
-            
-        case 7:
-            signalLabel = "Land"
-            print("Land")
-            landCount = landCount + 1
-            if signal == previousDirection && landCount > 10 && droneControlSwitch.isOn && isSendControl{
-                self.tello.land()
-                landCount = 0
-            }
-       
-        default :
-            print("default")
-        }
-        
-        previousDirection = Int(signal)
-        
-        DispatchQueue.main.async {
-            self.directionLabel.text = signalLabel
-        }
-
             return returnData
         }
     
@@ -490,6 +427,102 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             if streamBuffer.count == 0 {
                 return nil
             }
+        }
+    }
+    
+    func sendSignalToDrone(signal: Int){
+        var signalLabel = ""
+        let controlCount = 2 //num of stack
+        
+        switch (signal){
+        case 0:
+            signalLabel = "UP"
+            upCount = upCount + 1
+            print("Up")
+            if signal == previousDirection && upCount > controlCount && droneControlSwitch.isOn{
+                self.tello.up(by: 30)
+                upCount = 0
+            }
+            
+           
+            
+        case 1:
+            signalLabel = "Down"
+            downCount = downCount + 1
+            print("Down")
+            if signal == previousDirection && downCount > controlCount && droneControlSwitch.isOn && isSendControl{
+                self.tello.down(by: 30)
+                downCount = 0
+            }
+            
+        case 2:
+            signalLabel = "Left"
+            leftCount = leftCount + 1
+            print("Left")
+            if signal == previousDirection && leftCount > controlCount && droneControlSwitch.isOn && isSendControl{
+                self.tello.left(by: 30)
+                leftCount = 0
+            }
+            
+        case 3:
+            signalLabel = "Right"
+            rightCount = rightCount + 1
+            print("Right")
+            if signal == previousDirection && rightCount > controlCount && droneControlSwitch.isOn && isSendControl{
+                self.tello.right(by: 30)
+                rightCount = 0
+            }
+            
+        case 4:
+            signalLabel = "Go forward"
+            forwardCount = forwardCount + 1
+            print("Go forward")
+          if signal == previousDirection && forwardCount > controlCount && droneControlSwitch.isOn && isSendControl{
+            self.tello.forward(by: 30)
+            forwardCount = 0
+        }
+            
+                       
+        case 5:
+            signalLabel = "Back"
+            print("Back")
+            
+            backwardCount = backwardCount + 1
+            if signal == previousDirection && backwardCount > controlCount && droneControlSwitch.isOn && isSendControl{
+                self.tello.back(by: 30)
+                backwardCount = 0
+            }
+
+        case 6:
+            signalLabel = "Take off"
+            print("Take off")
+            takeoffCount = takeoffCount + 1
+
+            
+            if signal == previousDirection && takeoffCount > 5 && droneControlSwitch.isOn && isSendControl{
+                print("true")
+                self.tello.takeoff()
+                takeoffCount = 0
+            }
+
+            
+        case 7:
+            signalLabel = "Land"
+            print("Land")
+            landCount = landCount + 1
+            if signal == previousDirection && landCount > 15 && droneControlSwitch.isOn && isSendControl{
+                self.tello.land()
+                landCount = 0
+            }
+       
+        default :
+            print("default")
+        }
+        
+        previousDirection = Int(signal)
+        
+        DispatchQueue.main.async {
+            self.directionLabel.text = signalLabel
         }
     }
     
