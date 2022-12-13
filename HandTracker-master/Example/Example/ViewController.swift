@@ -31,8 +31,8 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     var downCount = 0
     var previousDirection = 10
     var isDroneConnected = false
-    var isSendControl = true
-//    var isSendControl = false
+//    var isSendControl = true
+    var isSendControl = false
     
     
     //DroneVideoView related Variables
