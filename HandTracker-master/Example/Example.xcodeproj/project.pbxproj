@@ -18,6 +18,8 @@
 		6AB2439A29478874005F7A79 /* HandLandmarkTrackingGpu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB2439929478874005F7A79 /* HandLandmarkTrackingGpu.swift */; };
 		6AB2439C294788E6005F7A79 /* PacketReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB2439B294788E6005F7A79 /* PacketReceiver.swift */; };
 		6AB2439F29478B42005F7A79 /* TelloSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6AB2439E29478B42005F7A79 /* TelloSwift */; };
+		6AB243A129478BAB005F7A79 /* TelloVideoH264Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB243A029478BAB005F7A79 /* TelloVideoH264Decoder.swift */; };
+		6AB243A32947B0CE005F7A79 /* GangstureModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6AB243A22947B0CD005F7A79 /* GangstureModel.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,6 +48,8 @@
 		6AB243972946914E005F7A79 /* GangstureHandModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = GangstureHandModel.mlmodel; sourceTree = "<group>"; };
 		6AB2439929478874005F7A79 /* HandLandmarkTrackingGpu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandLandmarkTrackingGpu.swift; sourceTree = "<group>"; };
 		6AB2439B294788E6005F7A79 /* PacketReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketReceiver.swift; sourceTree = "<group>"; };
+		6AB243A029478BAB005F7A79 /* TelloVideoH264Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelloVideoH264Decoder.swift; sourceTree = "<group>"; };
+		6AB243A22947B0CD005F7A79 /* GangstureModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = GangstureModel.mlmodel; sourceTree = "<group>"; };
 		A044C3E52F7E9F119AA10B33 /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		CD79B9A1357C0D0A1DD28571 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,8 +96,10 @@
 				37EEA4172435143700750CDB /* LaunchScreen.storyboard */,
 				37EEA41A2435143700750CDB /* Info.plist */,
 				6AB243972946914E005F7A79 /* GangstureHandModel.mlmodel */,
+				6AB243A22947B0CD005F7A79 /* GangstureModel.mlmodel */,
 				37F8488D243515D80078042B /* Camera.swift */,
 				6AB2439B294788E6005F7A79 /* PacketReceiver.swift */,
+				6AB243A029478BAB005F7A79 /* TelloVideoH264Decoder.swift */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -243,7 +249,9 @@
 				6AB2439C294788E6005F7A79 /* PacketReceiver.swift in Sources */,
 				37EEA40D2435143600750CDB /* AppDelegate.swift in Sources */,
 				37EEA40F2435143600750CDB /* SceneDelegate.swift in Sources */,
+				6AB243A32947B0CE005F7A79 /* GangstureModel.mlmodel in Sources */,
 				6AB243982946914E005F7A79 /* GangstureHandModel.mlmodel in Sources */,
+				6AB243A129478BAB005F7A79 /* TelloVideoH264Decoder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
