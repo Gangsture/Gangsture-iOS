@@ -19,6 +19,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="cdr-ti-qir">
                                 <rect key="frame" x="105" y="268.66666666666669" width="180" height="180"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="M37-E5-6k4"/>
                                     <constraint firstAttribute="width" secondItem="cdr-ti-qir" secondAttribute="height" multiplier="1:1" id="wz6-TM-dl5"/>
                                 </constraints>
                             </imageView>

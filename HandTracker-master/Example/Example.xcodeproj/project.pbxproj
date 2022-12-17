@@ -14,6 +14,7 @@
 		37EEA4162435143700750CDB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37EEA4152435143700750CDB /* Assets.xcassets */; };
 		37EEA4192435143700750CDB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37EEA4172435143700750CDB /* LaunchScreen.storyboard */; };
 		37F8488E243515D80078042B /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F8488D243515D80078042B /* Camera.swift */; };
+		6A64E11C294E2870001B4229 /* GangstureHandModel++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A64E11B294E2870001B4229 /* GangstureHandModel++.swift */; };
 		6AB243982946914E005F7A79 /* GangstureHandModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6AB243972946914E005F7A79 /* GangstureHandModel.mlmodel */; };
 		6AB2439A29478874005F7A79 /* HandLandmarkTrackingGpu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB2439929478874005F7A79 /* HandLandmarkTrackingGpu.swift */; };
 		6AB2439C294788E6005F7A79 /* PacketReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB2439B294788E6005F7A79 /* PacketReceiver.swift */; };
@@ -45,6 +46,7 @@
 		37EEA4182435143700750CDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		37EEA41A2435143700750CDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		37F8488D243515D80078042B /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		6A64E11B294E2870001B4229 /* GangstureHandModel++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GangstureHandModel++.swift"; sourceTree = "<group>"; };
 		6AB243972946914E005F7A79 /* GangstureHandModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = GangstureHandModel.mlmodel; sourceTree = "<group>"; };
 		6AB2439929478874005F7A79 /* HandLandmarkTrackingGpu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandLandmarkTrackingGpu.swift; sourceTree = "<group>"; };
 		6AB2439B294788E6005F7A79 /* PacketReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketReceiver.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				37F8488D243515D80078042B /* Camera.swift */,
 				6AB2439B294788E6005F7A79 /* PacketReceiver.swift */,
 				6AB243A029478BAB005F7A79 /* TelloVideoH264Decoder.swift */,
+				6A64E11B294E2870001B4229 /* GangstureHandModel++.swift */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 				6AB243A32947B0CE005F7A79 /* GangstureModel.mlmodel in Sources */,
 				6AB243982946914E005F7A79 /* GangstureHandModel.mlmodel in Sources */,
 				6AB243A129478BAB005F7A79 /* TelloVideoH264Decoder.swift in Sources */,
+				6A64E11C294E2870001B4229 /* GangstureHandModel++.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
