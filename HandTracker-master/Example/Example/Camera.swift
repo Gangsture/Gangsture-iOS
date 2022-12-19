@@ -21,10 +21,11 @@ class Camera: NSObject {
         output.setSampleBufferDelegate(delegate, queue: .main)
     }
     
+    //Camera Start
     func start() {
         session.startRunning()
     }
-    
+    //Camera Stop
     func stop() {
         session.stopRunning()
     }

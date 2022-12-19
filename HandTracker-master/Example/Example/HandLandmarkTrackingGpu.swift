@@ -1,7 +1,7 @@
 import Foundation
 import MediaPipeHands
 
-//MediaPipe HandTrackerGPU
+//MediaPipe HandTracker GPU
 class HandLandmarkTrackingGpu: NSObject, MediaPipeGraphDelegate {
     struct Output {
         let handLandmarks: [Data]

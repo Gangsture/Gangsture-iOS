@@ -95,7 +95,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //Start to get drone streaming video.
+        //Start to get drone streaming video
         DispatchQueue.global().asyncAfter(deadline: DispatchTime.now().advanced(by: .seconds(5))) { [unowned self] in
             self.decoder.renderVideoStream(streamBuffer: &self.streamBuffer, to: self.videoLayer!)
         }
@@ -179,7 +179,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         }
     }
     
-    //Convert MediaPipe landmarks to input list for gesture AI.
+    //Convert MediaPipe landmarks to input list for gesture AI
     func getInputList(data: Data) -> [Double] {
         
         var xLandmarks = [Float]()
@@ -263,7 +263,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         return Float(bitPattern: bitPattern)
     }
     
-    //Obtain video frame and put it to global user interactive queue.
+    //Obtain video frame and put it to global user interactive queue
     func telloStream(receive frame: Data?) {
         if let frame = frame {
             let packet = [UInt8](frame)
@@ -443,7 +443,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
 }
 
 extension Collection {
-    // Returns the element at the specified index if it is within bounds, otherwise nil.
+    // Returns the element at the specified index if it is within bounds, otherwise nil
     subscript (safe index: Index) -> Element? {
         return indices.contains(index) ? self[index] : nil
     }
