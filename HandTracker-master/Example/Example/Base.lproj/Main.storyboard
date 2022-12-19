@@ -112,21 +112,6 @@
                                 <rect key="frame" x="133.5" y="660" width="51" height="31"/>
                                 <color key="onTintColor" red="0.18823529410000001" green="0.96333198809999998" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </switch>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VK8-ED-vuM">
-                                <rect key="frame" x="15" y="535" width="43" height="75"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="31Q-TZ-EhR"/>
-                                    <constraint firstAttribute="width" constant="43" id="vgP-47-99K"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title=" ">
-                                    <color key="baseBackgroundColor" red="0.41448434839999998" green="0.34366820460000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="faceButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WeG-dk-FlK"/>
-                                    <action selector="wifiButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JEF-JB-PhI"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fl2-LD-EWh">
                                 <rect key="frame" x="282" y="77" width="55" height="34"/>
                                 <constraints>
@@ -179,7 +164,6 @@
                             <constraint firstItem="jGk-y0-X0v" firstAttribute="trailing" secondItem="S9Y-hA-F7O" secondAttribute="trailing" id="0Rp-9A-0d5"/>
                             <constraint firstItem="IVW-ZT-IXd" firstAttribute="top" secondItem="CeR-wf-CUZ" secondAttribute="top" constant="10" id="0Xd-eT-iPU"/>
                             <constraint firstItem="hzM-Cl-ySP" firstAttribute="leading" secondItem="jjq-EY-9Bi" secondAttribute="trailing" constant="10" id="1UV-0F-cTr"/>
-                            <constraint firstItem="VK8-ED-vuM" firstAttribute="top" secondItem="6zq-Bl-rA9" secondAttribute="bottom" constant="25" id="1Xt-KE-JLo"/>
                             <constraint firstItem="Aof-Zd-06s" firstAttribute="top" secondItem="6zq-Bl-rA9" secondAttribute="bottom" constant="30" id="5Ax-1i-o6t"/>
                             <constraint firstItem="6zq-Bl-rA9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="11" id="6vQ-Ie-3TA"/>
                             <constraint firstItem="8j3-XY-7Ju" firstAttribute="leading" secondItem="Fl2-LD-EWh" secondAttribute="trailing" constant="4" id="8HQ-3B-wTw"/>
@@ -203,16 +187,14 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="CeR-wf-CUZ" secondAttribute="trailing" constant="40" id="qdW-C1-Kqc"/>
                             <constraint firstItem="jCS-iV-0pZ" firstAttribute="centerY" secondItem="Fl2-LD-EWh" secondAttribute="centerY" id="u6c-i0-Ofy"/>
                             <constraint firstItem="Aof-Zd-06s" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="vnM-zM-OES"/>
-                            <constraint firstItem="VK8-ED-vuM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="wZh-yW-dCd"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="directionLabel" destination="Aof-Zd-06s" id="0UH-X6-eB8"/>
-                        <outlet property="droneControlSwitch" destination="hzM-Cl-ySP" id="uNY-vL-uyS"/>
+                        <outlet property="droneControlActivateSwitch" destination="hzM-Cl-ySP" id="uNY-vL-uyS"/>
                         <outlet property="droneVideoView" destination="Mnm-dh-DfN" id="8ve-SC-7Lm"/>
-                        <outlet property="faceButton" destination="VK8-ED-vuM" id="jkh-se-al5"/>
-                        <outlet property="faceLabel" destination="IVW-ZT-IXd" id="reg-Ux-OOm"/>
-                        <outlet property="imageView" destination="CeR-wf-CUZ" id="ql2-Yk-x6K"/>
+                        <outlet property="faceRecognitionLabel" destination="IVW-ZT-IXd" id="reg-Ux-OOm"/>
+                        <outlet property="handVideoView" destination="CeR-wf-CUZ" id="ql2-Yk-x6K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

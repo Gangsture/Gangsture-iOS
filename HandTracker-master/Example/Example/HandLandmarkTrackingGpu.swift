@@ -1,15 +1,7 @@
-//
-//  HandLandmarkTrackingGpu.swift
-//  Example
-//
-//  Created by 이유진 on 2022/12/12.
-//  Copyright © 2022 Tomoya Hirano. All rights reserved.
-//
-
 import Foundation
 import MediaPipeHands
 
-
+//MediaPipe HandTrackerGPU
 class HandLandmarkTrackingGpu: NSObject, MediaPipeGraphDelegate {
     struct Output {
         let handLandmarks: [Data]

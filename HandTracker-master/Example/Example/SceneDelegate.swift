@@ -1,10 +1,3 @@
-//
-//  SceneDelegate.swift
-//  Example
-//
-//  Created by Tomoya Hirano on 2020/04/02.
-//  Copyright © 2020 Tomoya Hirano. All rights reserved.
-//
 
 import UIKit
 

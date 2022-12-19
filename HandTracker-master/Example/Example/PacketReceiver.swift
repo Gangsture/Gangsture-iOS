@@ -1,14 +1,7 @@
-//
-//  PacketReceiver.swift
-//  Example
-//
-//  Created by 이유진 on 2022/12/12.
-//  Copyright © 2022 Tomoya Hirano. All rights reserved.
-//
-
 import Foundation
 import MediaPipeHands
 
+//Packet class for MediaPipe
 class PacketReceiver: NSObject, MediaPipeGraphDelegate {
     struct Batch {
         var timestamp: MediaPipeTimestamp
