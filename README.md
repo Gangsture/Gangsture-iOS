@@ -40,7 +40,8 @@ open Example.xcworkspace
 https://github.com/liuxuan30/TelloSwift.git
 ```
 
-### Execution
+### Execution - Real device must be connected
 
 `cmd` + `r`
+
 
