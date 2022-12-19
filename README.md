@@ -35,14 +35,12 @@ pod install
 open Example.xcworkspace
 ```
 
-### Install Swift Package ([usage](https://tttap.tistory.com/118))
-```
-https://github.com/liuxuan30/TelloSwift.git
-```
+delete Pods_Example.framework
+<img width="539" alt="image" src="https://user-images.githubusercontent.com/56622200/208339071-d7bab3cb-d6c4-4da0-8ac8-de782e2c27d0.png">
 
 ### Execution - Real iOS device must be connected
 
 `cmd` + `r`
 
 
-<img width="539" alt="image" src="https://user-images.githubusercontent.com/56622200/208339071-d7bab3cb-d6c4-4da0-8ac8-de782e2c27d0.png">
+
