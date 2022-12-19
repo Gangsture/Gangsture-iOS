@@ -44,5 +44,5 @@ https://github.com/liuxuan30/TelloSwift.git
 
 `cmd` + `r`
 
-<img width="544" alt="image" src="https://user-images.githubusercontent.com/56622200/208338991-fc827a21-4fad-4ab8-b99e-5ee1bd1337a6.png">
 
+<img width="539" alt="image" src="https://user-images.githubusercontent.com/56622200/208339071-d7bab3cb-d6c4-4da0-8ac8-de782e2c27d0.png">
